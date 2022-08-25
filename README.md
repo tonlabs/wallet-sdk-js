@@ -173,23 +173,23 @@ async function main(client) {
 
 At the moment, the Wallet class has only two methods of its own:
 
--   `Wallet.create( walletType: WalletTypes, {signer: Signer, client: TonClient} )\
-    Static factory methods to create a wallet instance one of: SafeMultisig, SetcodeMultisig, Surf
+    -   `Wallet.create( walletType: WalletTypes, {signer: Signer, client: TonClient} )`\
+        Static factory method for wallet instantiation. Wallet type is one of SafeMultisig, SetcodeMultisig, Surf
 
--   `wallet.install({owners: string[], reqConfirms: number, useGiver?: true | AccountGiver})\
-    Object method which deploys wallet contract into blockchain.\
-    @param: owners - an array of custodian public keys of custodians.
-    Make sure all public keys are enclosed in quotes and start with 0x.
+    -   `wallet.install({owners: string[], reqConfirms: number, useGiver?: true | AccountGiver})`\
+        Object method which deploys wallet contract into blockchain.\
+        @param: owners - an array of custodian public keys of custodians.
+        Make sure all public keys are enclosed in quotes and start with 0x.
 
-@param reqConfirms - number of signatures needed to confirm a transaction
+        @param reqConfirms - number of signatures needed to confirm a transaction
 
-@param useGiver - Giver to be used to send amount of value to deploying address before deploying.
-If true then Account.getDefaultGiver() will be used. If omitted then application must prepay address using own logic.
-Most likely, if you are using EverOS SE, you set this option to true.
+        @param useGiver - Giver to be used to send amount of value to deploying address before deploying.\
+        If true then Account.getDefaultGiver() will be used. If omitted then application must prepay address using own logic.
+        Most likely, if you are using EverOS SE, you set this option to `true`.
 
 All other methods Wallet class inherits from Contract class of AppKit, find its full API
 reference [here](https://tonlabs.github.io/ever-appkit-js/)
 
-### Sample source code
+## Sample source code
 
 Find the sample that demonstrates WalletKit usage source code here: [src/example.ts](./src/example.ts)
