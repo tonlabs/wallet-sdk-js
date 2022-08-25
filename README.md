@@ -16,17 +16,17 @@ WalletKit works with the following types of wallets:
 
 ## Table of Contents
 
--   [Useful links](./#useful-links)
--   [Before You Start](./#before-you-start)
--   [Installation](./#installation)
--   [Setup Client Library](./#setup-client-library)
-    -   [NodeJs:](./#nodejs)
-    -   [Web:](./#web)
-    -   [React Native:](./#react-native)
--   [Create Client Instance](./#create-client-instance)
--   [Use Wallet Object](./#use-wallet-object)
--   [API Reaference](./#api-reference)
--   [Sample source code](./#sample-source-code)
+-   [Useful links](#useful-links)
+-   [Before You Start](#before-you-start)
+-   [Installation](#installation)
+-   [Setup Client Library](#setup-client-library)
+    -   [NodeJs:](#nodejs)
+    -   [Web:](#web)
+    -   [React Native:](#react-native)
+-   [Create Client Instance](#create-client-instance)
+-   [Use Wallet Object](#use-wallet-object)
+-   [API Reaference](#api-reference)
+-   [Sample source code](#sample-source-code)
 
 ## Useful links
 
