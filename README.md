@@ -2,9 +2,9 @@
 
 This library is a part of Everscale SDK for JavaScript.
 
-WalletKit is built over the [@eversdk/appkit](https://github.com/tonlabs/ever-appkit-js) package and purposed to simplify writing applications on Everscale.
+WalletKit is built over the [@eversdk/appkit](https://github.com/tonlabs/ever-appkit-js) package and purposed to simplify work with wallets on Everscale.
 
-Wallet object extends an AppKit.Account class and can deploy wallets of these types:
+WalletKit works with the following types of wallets:
 
 -   Safe multisig wallet
 -   Set code multisig wallet
@@ -56,8 +56,6 @@ npm i --save @eversdk/walletkit
 ```
 
 ## Setup Client Library
-
-You must initialize the core library before the first use. The best place to do it is in the initialization code of your application.
 
 ### NodeJs:
 
@@ -118,7 +116,7 @@ In this sample we create a client instance configured to use local blockchain [E
 
 If you want to work with Developer Network or Everscale main network,
 please use the [list of endpoints, listed here](https://docs.everos.dev/ever-sdk/reference/ever-os-api/networks).\
-**Attention** You must specify all the endpoints as an array in `endpoints` parameter,
+**Attention**: You must specify all the endpoints as an array in `endpoints` parameter,
 because each endpoint does not guarantee its availability, but we guarantee that at least one endpoint is operational at the moment.
 
 ## Use Wallet Object
@@ -151,7 +149,7 @@ async function main(client) {
     // Create owner (signer) instance for new account.
     const signer = signerKeys(keys)
 
-    // Construct an instance of WalletTypes.Surf
+    // Create an instance of `WalletTypes.Surf`
     //
     // Note that this account is not deployed in the blockchain yet.
     // We just create an object to deal with this account.
@@ -173,23 +171,24 @@ async function main(client) {
 
 ## API reference
 
-    For now Wallet class has only two own methods:
-    - `Wallet.create( walletType: WalletTypes, {signer: Signer, client: TonClient} )\
+At the moment, the Wallet class has only two methods of its own:
+
+-   `Wallet.create( walletType: WalletTypes, {signer: Signer, client: TonClient} )\
     Static factory methods to create a wallet instance one of: SafeMultisig, SetcodeMultisig, Surf
 
-    - `wallet.install({owners: string[], reqConfirms: number, useGiver?: true | AccountGiver})\
+-   `wallet.install({owners: string[], reqConfirms: number, useGiver?: true | AccountGiver})\
     Object method which deploys wallet contract into blockchain.\
     @param: owners - an array of custodian public keys of custodians.
-        Make sure all public keys are enclosed in quotes and start with 0x.
+    Make sure all public keys are enclosed in quotes and start with 0x.
 
-    @param reqConfirms - number of signatures needed to confirm a transaction
+@param reqConfirms - number of signatures needed to confirm a transaction
 
-    @param useGiver - Giver to be used to send amount of value to deploying address before deploying.
-    If true then Account.getDefaultGiver() will be used. If omitted then application must prepay address using own logic.
-    Most likely, if you are using EverOS SE, you set this option to true.
+@param useGiver - Giver to be used to send amount of value to deploying address before deploying.
+If true then Account.getDefaultGiver() will be used. If omitted then application must prepay address using own logic.
+Most likely, if you are using EverOS SE, you set this option to true.
 
-    All other methods Wallet class inherits from Contract class of AppKit, find its full API
-    reference [here](https://tonlabs.github.io/ever-appkit-js/)
+All other methods Wallet class inherits from Contract class of AppKit, find its full API
+reference [here](https://tonlabs.github.io/ever-appkit-js/)
 
 ### Sample source code
 
