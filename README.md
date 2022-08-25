@@ -27,6 +27,7 @@ WalletKit works with the following types of wallets:
 -   [Use Wallet Object](#use-wallet-object)
 -   [API Reaference](#api-reference)
 -   [Sample source code](#sample-source-code)
+-   [Run an example](#run-am-example)
 
 ## Useful links
 
@@ -193,3 +194,18 @@ reference [here](https://tonlabs.github.io/ever-appkit-js/)
 ## Sample source code
 
 Find the sample that demonstrates WalletKit usage source code here: [src/example.ts](./src/example.ts)
+
+## Run an example
+To run an example or tests wou have to run EverOS SE 
+
+```bash
+everdev se start
+
+# if you want to run test
+npm test
+
+# if you want to run example
+npm run build
+node dist/example.js
+``
+
