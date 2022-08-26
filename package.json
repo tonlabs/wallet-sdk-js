@@ -1,7 +1,7 @@
 {
     "name": "@eversdk/wallet",
     "version": "0.0.1",
-    "description": "Ever SDK: Wallet Kit",
+    "description": "Ever SDK Wallet Kit",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "license": "Apache-2.0",
@@ -9,12 +9,7 @@
         "type": "git",
         "url": "https://github.com/tonlabs/typescript-codestyle"
     },
-    "keywords": [
-        "TON",
-        "Wallet",
-        "EverOS",
-        "SDK"
-    ],
+    "keywords": ["TON", "Wallet", "EverOS", "SDK"],
     "author": "EVER DEV SOLUTIONS LTD.",
     "licenses": [
         {
@@ -31,7 +26,8 @@
         "eslint": "eslint \"**/*.ts\"",
         "eslint-fix": "eslint \"**/*.ts\" --fix",
         "tsc": "tsc",
-        "build": "rimraf dist && npm run eslint &&  tsc --project tsconfig.build.json",
+        "copy-files": "copyfiles -u 1 src/assets/* dist",
+        "build": "rimraf dist && npm run eslint &&  tsc --project tsconfig.build.json && npm run copy-files",
         "test": "jest --forceExit --detectOpenHandles --coverage --verbose",
         "start": "NODE_ENV=production node dist/main.js"
     },
@@ -44,6 +40,7 @@
         "@types/node": "^16.0.1",
         "@typescript-eslint/eslint-plugin": "^5.19.0",
         "@typescript-eslint/parser": "^5.19.0",
+        "copyfiles": "^2.4.1",
         "eslint": "^7.30.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-plugin-jest": "^26.1.4",
@@ -62,9 +59,6 @@
         }
     },
     "lint-staged": {
-        "*.ts": [
-            "npm run eslint",
-            "npm run format"
-        ]
+        "*.ts": ["npm run eslint", "npm run format"]
     }
 }
