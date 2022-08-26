@@ -53,7 +53,10 @@ npm i --save @eversdk/lib-web
 npm i --save @eversdk/lib-react-native
 
 # And finally install wallet package itself
-npm i --save @eversdk/wallet
+npm i --save @eversdk/wallet 
+
+### If this package is NOt published on NPM yet, install it from github directly:
+# npm i github:tonlabs/wallet-sdk-js
 ```
 
 ## Setup Client Library
