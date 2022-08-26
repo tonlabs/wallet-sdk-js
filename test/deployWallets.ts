@@ -1,3 +1,4 @@
+import { Account } from "@eversdk/appkit"
 import { TonClient, signerKeys } from "@eversdk/core"
 import { libNode } from "@eversdk/lib-node"
 
@@ -28,13 +29,15 @@ test.each([
     const address = await wallet.getAddress()
     expect(address.substring(0, 2)).toEqual("0:")
 
-    await wallet.install({
+    const giver = await Account.getGiverForClient(client)
+    await giver.sendTo(address, 1e9)
+
+    await wallet.deploy({
         owners: [
             "0x8868adbf012ebc349ced852fdcf5b9d55d1873a68250fae1be609286dd962582",
             "0xa0e16ccff0c7bf4f29422b33ec1c9187200e9bd949bb2dd4c78415009d50778a",
         ],
         reqConfirms: 1,
-        useGiver: true,
     })
     const balance: string = (await wallet.getAccount()).balance
     expect(Number.parseInt(balance)).toBeGreaterThan(500_000_000)

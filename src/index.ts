@@ -1,6 +1,6 @@
 import * as fs from "fs"
 import * as path from "path"
-import { Account, AccountGiver, ContractPackage } from "@eversdk/appkit"
+import { Account, ContractPackage } from "@eversdk/appkit"
 import { ResultOfProcessMessage, Signer, TonClient } from "@eversdk/core"
 
 export enum WalletTypes {
@@ -11,17 +11,20 @@ export enum WalletTypes {
 
 export type CreateOptions = { signer: Signer; client: TonClient }
 
-export type InstallOptions = {
+export type DeployMultisigOpts = {
     owners: string[]
     reqConfirms: number
-    useGiver?: true | AccountGiver
 }
+/*
+ * At the moment we can deploy Multisig wallets only
+ */
+export type DeployOpts = DeployMultisigOpts
 
-export class Wallet extends Account {
+export class Wallet {
     static contractPackage: ContractPackage
-
-    private constructor(options: CreateOptions) {
-        super(Wallet.contractPackage, options)
+    account: Account
+    private constructor(opts: CreateOptions) {
+        this.account = new Account(Wallet.contractPackage, opts)
     }
 
     static create(wallet: WalletTypes, options: CreateOptions) {
@@ -40,15 +43,20 @@ export class Wallet extends Account {
         }
     }
 
-    install(params: InstallOptions): Promise<ResultOfProcessMessage> {
+    deploy(params: DeployOpts): Promise<ResultOfProcessMessage> {
         const opts = {
             initFunctionName: "constructor",
             initInput: {
                 owners: params.owners,
                 reqConfirms: params.reqConfirms,
             },
-            useGiver: params?.useGiver,
         }
-        return super.deploy(opts)
+        return this.account.deploy(opts)
+    }
+    getAccount() {
+        return this.account.getAccount()
+    }
+    getAddress() {
+        return this.account.getAddress()
     }
 }
