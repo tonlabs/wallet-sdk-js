@@ -29,7 +29,7 @@ export class Wallet {
 
     static create(wallet: WalletTypes, options: CreateOptions) {
         if (!Wallet.contractPackage) {
-            Wallet.contractPackage = Wallet.loadContract(`../assets/${wallet}`)
+            Wallet.contractPackage = Wallet.loadContract(`./assets/${wallet}`)
         }
         return new Wallet(options)
     }

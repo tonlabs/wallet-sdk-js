@@ -182,11 +182,11 @@ async function main(client) {
 
 At the moment, the Wallet class has these methods:
 
--   `Wallet.create( walletType: WalletTypes, {signer: Signer, client: TonClient} )` - static factory method for wallet instantiation
+-   `Wallet.create( walletType: WalletTypes, {signer: Signer, client: TonClient} )` - static factory method for wallet instantiation,\
+     where  WalletTypes is  enum { SafeMultisig, SetcodeMultisig, Surf }
 
-    -   walletType - is a value from WalletTypes enum (SafeMultisig, SetcodeMultisig, Surf)
-
--   `async deploy({owners: string[], reqConfirms: number})` - deploys wallet contract into blockchain.
+-   `async deploy( params: DeployMultisigOpts )` - deploys wallet contract into blockchain,\
+     where  `type DeployMultisigOpts = { owners: string[], reqConfirms: number }` 
 
     -   owners - an array of custodian public keys of custodians.
         Make sure all public keys are enclosed in quotes and start with 0x.
