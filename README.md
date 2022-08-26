@@ -1,10 +1,10 @@
-# Everscale WalletKit
+# Everscale Wallet SDK
 
 This library is a part of Everscale SDK for JavaScript.
 
-WalletKit is built over the [@eversdk/appkit](https://github.com/tonlabs/ever-appkit-js) package and purposed to simplify work with wallets on Everscale.
+Built over the [@eversdk/appkit](https://github.com/tonlabs/ever-appkit-js) package and purposed to simplify work with wallets on Everscale.
 
-WalletKit works with the following types of wallets:
+Works with the following types of wallets:
 
 -   Safe multisig wallet
 -   Set code multisig wallet
@@ -52,8 +52,8 @@ npm i --save @eversdk/lib-web
 # Or install lib-react-native if you write react-native mobile application
 npm i --save @eversdk/lib-react-native
 
-# And finally install walletkit itself
-npm i --save @eversdk/walletkit
+# And finally install wallet package itself
+npm i --save @eversdk/wallet
 ```
 
 ## Setup Client Library
@@ -129,7 +129,7 @@ We suppose that we are using lib-node bridge (NodeJs) to write examples.
 ```javascript
 const { TonClient } = require("@eversdk/core")
 const { libNode } = require("@eversdk/lib-node")
-const { Account } = require("@eversdk/walletkit")
+const { Account } = require("@eversdk/wallet")
 
 TonClient.useBinaryLibrary(libNode)
 ;(async () => {
@@ -200,7 +200,7 @@ At the moment, the Wallet class has these methods:
 Auto-generated Wallet API documentation is here: [docs](docs/)
 ## Sample source code
 
-Find the sample that demonstrates WalletKit usage source code here: [src/example.ts](./src/example.ts)
+Find the sample that demonstrates Wallet package usage source code here: [src/example.ts](./src/example.ts)
 
 ## Run test or example
 
