@@ -31,7 +31,7 @@
         "eslint": "eslint \"**/*.ts\"",
         "eslint-fix": "eslint \"**/*.ts\" --fix",
         "tsc": "tsc",
-        "docs": "typedoc src/account.ts --out docs",
+        "docs": "typedoc src/index.ts --out docs",
         "copy-files": "copyfiles -u 1 src/assets/* dist",
         "build": "rimraf dist && npm run eslint &&  tsc --project tsconfig.build.json && npm run copy-files",
         "test": "jest --forceExit --detectOpenHandles --coverage --verbose",
@@ -62,14 +62,13 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "lint-staged && npm run docs && git add docs"
         }
     },
     "lint-staged": {
         "*.ts": [
             "npm run eslint",
-            "npm run format",
-            "npm run docs"
+            "npm run format"
         ]
     }
 }

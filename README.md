@@ -105,7 +105,7 @@ TonClient.useBinaryLibrary(libReactNative)
 
 ## Create Client Instance
 
-You have to create an instance of `TonClient` to use it later with WalletKit objects.
+You have to create an instance of `TonClient` to use it later with Wallet objects.
 
 ```javascript
 const client = new TonClient({
@@ -122,7 +122,7 @@ because each endpoint does not guarantee its availability, but we guarantee that
 
 ## Use Wallet Object
 
-This snippet illustrates how to deploy "Surf" wallet to [Evernode SE](https://github.com/tonlabs/evernode-se)
+This snippet illustrates how to deploy Surf wallet to [Evernode SE](https://github.com/tonlabs/evernode-se)
 .\
 We suppose that we are using lib-node bridge (NodeJs) to write examples.
 
@@ -183,10 +183,10 @@ async function main(client) {
 At the moment, the Wallet class has these methods:
 
 -   `Wallet.create(walletType: WalletTypes, {signer: Signer, client: TonClient})` - static factory method for wallet instantiation,
-     where  WalletTypes is `enum { SafeMultisig, SetcodeMultisig, Surf }`
+     where  WalletTypes is `enum {SafeMultisig, SetcodeMultisig, Surf}`
 
 -   `async deploy(params: DeployMultisigOpts)` - deploys wallet contract into blockchain,\
-     where  `type DeployMultisigOpts = { owners: string[], reqConfirms: number }` 
+     where  `type DeployMultisigOpts = {owners: string[], reqConfirms: number}` 
 
     -   owners - an array of public keys of custodians.
         Make sure all public keys are enclosed in quotes and start with 0x.
