@@ -183,7 +183,7 @@ async function main(client) {
 At the moment, the Wallet class has these methods:
 
 -   `Wallet.create(walletType: WalletTypes, {signer: Signer, client: TonClient})` - static factory method for wallet instantiation,
-     where  WalletTypes is ` enum { SafeMultisig, SetcodeMultisig, Surf }`
+     where  WalletTypes is `enum { SafeMultisig, SetcodeMultisig, Surf }`
 
 -   `async deploy(params: DeployMultisigOpts)` - deploys wallet contract into blockchain,\
      where  `type DeployMultisigOpts = { owners: string[], reqConfirms: number }` 
@@ -197,6 +197,7 @@ At the moment, the Wallet class has these methods:
 
 -   `async getAccount()` - Returns parsed data of the account.
  
+Auto-generated Wallet API documentation is here: [docs](docs/)
 ## Sample source code
 
 Find the sample that demonstrates WalletKit usage source code here: [src/example.ts](./src/example.ts)
