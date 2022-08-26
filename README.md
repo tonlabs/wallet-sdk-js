@@ -124,7 +124,7 @@ because each endpoint does not guarantee its availability, but we guarantee that
 
 This snippet illustrates how to deploy "Surf" wallet to [Evernode SE](https://github.com/tonlabs/evernode-se)
 .\
-We suppose that we are using lib-node bridge (NodeJs) to write examples.\
+We suppose that we are using lib-node bridge (NodeJs) to write examples.
 
 ```javascript
 const { TonClient } = require("@eversdk/core")
@@ -182,18 +182,18 @@ async function main(client) {
 
 At the moment, the Wallet class has these methods:
 
--   `Wallet.create( walletType: WalletTypes, {signer: Signer, client: TonClient} )` - static factory method for wallet instantiation,\
-     where  WalletTypes is  enum { SafeMultisig, SetcodeMultisig, Surf }
+-   `Wallet.create(walletType: WalletTypes, {signer: Signer, client: TonClient})` - static factory method for wallet instantiation,
+     where  WalletTypes is ` enum { SafeMultisig, SetcodeMultisig, Surf }`
 
--   `async deploy( params: DeployMultisigOpts )` - deploys wallet contract into blockchain,\
+-   `async deploy(params: DeployMultisigOpts)` - deploys wallet contract into blockchain,\
      where  `type DeployMultisigOpts = { owners: string[], reqConfirms: number }` 
 
-    -   owners - an array of custodian public keys of custodians.
+    -   owners - an array of public keys of custodians.
         Make sure all public keys are enclosed in quotes and start with 0x.
 
     -   reqConfirms - number of signatures needed to confirm a transaction
 
--   `async getAddress()` - Returns account address.
+-   `async getAddress()` - Returns the account address.
 
 -   `async getAccount()` - Returns parsed data of the account.
  
@@ -214,5 +214,4 @@ npm test
 # if you want to run example
 npm run build
 node dist/example.js
-``
 ```
