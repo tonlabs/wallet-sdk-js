@@ -54,9 +54,10 @@ npm i --save @eversdk/lib-react-native
 
 # And finally install wallet package itself
 npm i --save @eversdk/wallet 
-
-### If this package is NOt published on NPM yet, install it from github directly:
-# npm i github:tonlabs/wallet-sdk-js
+```
+Note that if this package is not already published to NPM, install it directly from github:
+```
+npm i github:tonlabs/wallet-sdk-js
 ```
 
 ## Setup Client Library
@@ -116,10 +117,10 @@ const client = new TonClient({
 })
 ```
 
-In this sample we create a client instance configured to use local blockchain [Evernode SE](https://github.com/tonlabs/evernode-se) instance.
-
+In this sample we create a client instance configured to use local blockchain [Evernode SE](https://github.com/tonlabs/evernode-se) instance.\
 If you want to work with Developer Network or Everscale main network,
-please use the [list of endpoints, listed here](https://docs.everos.dev/ever-sdk/reference/ever-os-api/networks).\
+please use the [list of endpoints, listed here](https://docs.everos.dev/ever-sdk/reference/ever-os-api/networks).
+
 **Attention**: You must specify all the endpoints as an array in `endpoints` parameter,
 because each endpoint does not guarantee its availability, but we guarantee that at least one endpoint is operational at the moment.
 
