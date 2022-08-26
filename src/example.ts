@@ -1,3 +1,4 @@
+import { Account } from "@eversdk/appkit"
 import { TonClient, signerKeys } from "@eversdk/core"
 import { libNode } from "@eversdk/lib-node"
 
@@ -24,14 +25,19 @@ async function main() {
     const surfWallet = Wallet.create(WalletTypes.Surf, { signer, client })
 
     const address = await surfWallet.getAddress()
+    console.log("Your wallet will be deployed to address:" + address)
     /*
      * Before any contract can be deployed on the network,
      * its address must have some positive balance, so send some tokens to
      * this address before deploying the contract.
      * In this example, we are deploying a wallet to EverosSE,
-     * so just setting the `useGiver : true` option is enough.
+     * so we use ability of AppKit to use its giver for EverosSE.
      */
-    console.log("Your wallet will be deployed to address:" + address)
+
+    const giver = await Account.getGiverForClient(client)
+    await giver.sendTo(address, 1e9)
+
+    console.log("Account balance was topped-up")
 
     /*
      * Let's pretend we want have two owners. Create key pairs for them.
@@ -46,10 +52,9 @@ async function main() {
      *
      * @param reqConfirms: number - number of signatures needed to confirm a transaction
      */
-    await surfWallet.install({
+    await surfWallet.deploy({
         owners: ["0x" + firstOwnerKeys.public, "0x" + secondOwnerKeys.public],
         reqConfirms: 1,
-        useGiver: true,
     })
     const { balance } = await surfWallet.getAccount()
     console.log(`Wallet is deployed! Its balance is ${balance}`)

@@ -27,7 +27,7 @@ WalletKit works with the following types of wallets:
 -   [Use Wallet Object](#use-wallet-object)
 -   [API Reaference](#api-reference)
 -   [Sample source code](#sample-source-code)
--   [Run an example](#run-am-example)
+-   [Run test or example](#run-test-or-example)
 
 ## Useful links
 
@@ -122,8 +122,9 @@ because each endpoint does not guarantee its availability, but we guarantee that
 
 ## Use Wallet Object
 
-Below we use a code snippets to illustrate how to deploy Surf wallet.\
-We suppose that we are using lib-node bridge (NodeJs) to write examples. Also, we use the library to deal with local [Evernode SE](https://github.com/tonlabs/evernode-se) instance.
+This snippet illustrates how to deploy "Surf" wallet to [Evernode SE](https://github.com/tonlabs/evernode-se)
+.\
+We suppose that we are using lib-node bridge (NodeJs) to write examples.\
 
 ```javascript
 const { TonClient } = require("@eversdk/core")
@@ -159,44 +160,50 @@ async function main(client) {
     // We can determine the future addres of the account
     // and print it to the user before deploying.
     console.log(`New account future address: ${await wallet.getAddress()}`)
+    /*
+     * Before any contract can be deployed on the network,
+     * its address must have some positive balance, so send some tokens to
+     * this address before deploying the contract.
+     * In this example, we are deploying a wallet to EverosSE,
+     * so we use ability of AppKit to use its giver for EverosSE.
+     */
+    const giver = await Account.getGiverForClient(client)
+    await giver.sendTo(address, 1e9)
 
-    // Deploy wallet with only one custodian to the blockchain.
-    // Here we use TONOS SE giver to create a positive balance before deploying.
-    await wallet.install({
+    // Now we deploy a wallet with ONE custodian to the blockchain.
+    await wallet.deploy({
         owners: ["0x" + keys.public],
         reqConfirms: 1,
-        useGiver: true,
     })
 }
 ```
 
 ## API reference
 
-At the moment, the Wallet class has only two methods of its own:
+At the moment, the Wallet class has these methods:
 
 -   `Wallet.create( walletType: WalletTypes, {signer: Signer, client: TonClient} )` - static factory method for wallet instantiation
-      - walletType - is a value from WalletTypes enum (SafeMultisig, SetcodeMultisig, Surf)
 
--   `wallet.install({owners: string[], reqConfirms: number, useGiver?: true | AccountGiver})`\
-     Object method which deploys wallet contract into blockchain.\
-      - owners - an array of custodian public keys of custodians.
-     Make sure all public keys are enclosed in quotes and start with 0x.
+    -   walletType - is a value from WalletTypes enum (SafeMultisig, SetcodeMultisig, Surf)
 
-      - reqConfirms - number of signatures needed to confirm a transaction
+-   `async deploy({owners: string[], reqConfirms: number})` - deploys wallet contract into blockchain.
 
-      - useGiver - Giver to be used to send amount of value to deploying address before deploying.\
-     If true then Account.getDefaultGiver() will be used. If omitted then application must prepay address using own logic.
-     Most likely, if you are using EverOS SE, you set this option to `true`.
+    -   owners - an array of custodian public keys of custodians.
+        Make sure all public keys are enclosed in quotes and start with 0x.
 
-All other methods Wallet class inherits from Contract class of AppKit, find its full API
-reference [here](https://tonlabs.github.io/ever-appkit-js/)
+    -   reqConfirms - number of signatures needed to confirm a transaction
 
+-   `async getAddress()` - Returns account address.
+
+-   `async getAccount()` - Returns parsed data of the account.
+ 
 ## Sample source code
 
 Find the sample that demonstrates WalletKit usage source code here: [src/example.ts](./src/example.ts)
 
-## Run an example
-To run an example or tests wou have to run EverOS SE 
+## Run test or example
+
+To run test or example you have to run EverOS SE
 
 ```bash
 everdev se start
@@ -208,4 +215,4 @@ npm test
 npm run build
 node dist/example.js
 ``
-
+```
