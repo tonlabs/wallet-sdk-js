@@ -131,9 +131,10 @@ This snippet illustrates how to deploy Surf wallet to [Evernode SE](https://gith
 We suppose that we are using lib-node bridge (NodeJs) to write examples.
 
 ```javascript
-const { TonClient } = require("@eversdk/core")
+const { TonClient, signerKeys } = require("@eversdk/core")
 const { libNode } = require("@eversdk/lib-node")
-const { Account } = require("@eversdk/wallet")
+const { Account } = require("@eversdk/appkit")
+const { Wallet, WalletTypes } = require("@eversdk/wallet")
 
 TonClient.useBinaryLibrary(libNode)
 ;(async () => {
@@ -163,7 +164,8 @@ async function main(client) {
 
     // We can determine the future addres of the account
     // and print it to the user before deploying.
-    console.log(`New account future address: ${await wallet.getAddress()}`)
+    const address = await wallet.getAddress()
+    console.log(`New account future address: ${address}`)
     /*
      * Before any contract can be deployed on the network,
      * its address must have some positive balance, so send some tokens to
@@ -179,6 +181,7 @@ async function main(client) {
         owners: ["0x" + keys.public],
         reqConfirms: 1,
     })
+    console.log("Wallet deployed.")
 }
 ```
 
