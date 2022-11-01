@@ -182,6 +182,7 @@ async function main(client) {
         owners: ["0x" + keys.public],
         reqConfirms: 1,
     })
+    console.log("Wallet deployed.")
 }
 ```
 
