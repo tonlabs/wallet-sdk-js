@@ -134,6 +134,7 @@ We suppose that we are using lib-node bridge (NodeJs) to write examples.
 const { TonClient, signerKeys } = require("@eversdk/core")
 const { libNode } = require("@eversdk/lib-node")
 const { Account } = require("@eversdk/appkit")
+
 const { Wallet, WalletTypes } = require("@eversdk/wallet")
 
 TonClient.useBinaryLibrary(libNode)
