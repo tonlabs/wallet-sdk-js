@@ -1,6 +1,6 @@
 {
     "name": "@eversdk/wallet",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Ever SDK Wallet",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -38,7 +38,7 @@
         "start": "NODE_ENV=production node dist/main.js"
     },
     "dependencies": {
-        "@eversdk/appkit": "^0.3.1"
+        "@eversdk/appkit": "^0.3.6"
     },
     "devDependencies": {
         "@eversdk/lib-node": "^1.37.0",

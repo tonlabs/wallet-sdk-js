@@ -5,15 +5,15 @@ export declare enum WalletTypes {
     SetcodeMultisig = "SetcodeMultisigWallet",
     Surf = "SurfMultisigWallet",
 }
-export declare type CreateOptions = {
+export type CreateOptions = {
     signer: Signer
     client: TonClient
 }
-export declare type DeployMultisigOpts = {
+export type DeployMultisigOpts = {
     owners: string[]
     reqConfirms: number
 }
-export declare type DeployOpts = DeployMultisigOpts
+export type DeployOpts = DeployMultisigOpts
 export declare class Wallet {
     static contractPackage: ContractPackage
     account: Account
